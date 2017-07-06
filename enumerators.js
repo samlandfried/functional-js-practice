@@ -15,4 +15,16 @@ var map = function(array, callback) {
   return newArr;
 }
 
-module.exports = { each, map };
+var select = function(array, callback) {
+  var newArr = [];
+
+  for ( var i = 0; i < array.length; i ++ ) {
+    if (callback(array[i])) {
+      newArr.push(array[i]);
+    }
+  }
+
+  return newArr;
+}
+
+module.exports = { each, map, select };
