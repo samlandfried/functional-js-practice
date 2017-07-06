@@ -13,7 +13,7 @@ var map = function(array, callback) {
   }
 
   return newArr;
-}
+};
 
 var select = function(array, callback) {
   var newArr = [];
@@ -25,7 +25,7 @@ var select = function(array, callback) {
   }
 
   return newArr;
-}
+};
 
 var all = function(array, callback) {
   for ( var i = 0; i < array.length; i ++ ) {
@@ -35,6 +35,16 @@ var all = function(array, callback) {
   }
 
   return true;
-}
+};
 
-module.exports = { each, map, select, all };
+var some = function(array, callback) {
+  for ( var i = 0; i < array.length; i ++ ) {
+    if (callback(array[i])) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+module.exports = { each, map, select, all, some };

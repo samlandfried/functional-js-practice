@@ -96,11 +96,11 @@ describe('some', function() {
   });
 
   it('Returns true if any elements in the array pass the test', function() {
-    var fourPresent = enumerators.some(input, function(num) {
-      return num === 4;
+    var threeInArray = enumerators.some(input, function(num) {
+      return num === 3;
     });
 
-    assert.equal(fourPresent, true)
+    assert.equal(threeInArray, true);
   });
 
   it('Returns false if all elements fail the provided test', function() {
