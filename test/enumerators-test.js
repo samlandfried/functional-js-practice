@@ -141,7 +141,7 @@ describe('reduce', function() {
       return memo;
     }, []); // <- Optional 3rd argument here (An empty array)
 
-    assert.equal(numWasEven, [false, true, false, true])
+    assert.deepEqual(numWasEven, [false, true, false, true])
   });
 });
 

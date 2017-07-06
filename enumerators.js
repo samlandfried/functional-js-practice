@@ -47,4 +47,15 @@ var some = function(array, callback) {
   return false;
 };
 
-module.exports = { each, map, select, all, some };
+var reduce = function(array, callback, initial) {
+  for (var i = 0; i < array.length; i ++ ) {
+    if (!initial) {
+      initial = array[i];
+    } else {
+      initial = callback(initial, array[i]);
+    }
+  }
+  return initial;
+};
+
+module.exports = { each, map, select, all, some, reduce };
