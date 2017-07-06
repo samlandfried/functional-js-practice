@@ -5,4 +5,14 @@ var each = function(array, callback) {
   return array;
 };
 
-module.exports = { each };
+var map = function(array, callback) {
+  var newArr = [];
+
+  for ( var i = 0; i < array.length; i ++ ) {
+    newArr.push(callback(array[i]));
+  }
+
+  return newArr;
+}
+
+module.exports = { each, map };

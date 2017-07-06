@@ -10,7 +10,7 @@ describe('each', function() {
       eleCount[num] = eleCount[num] + 1 || 1;
     });
 
-    assert.deepEqual(returnValue, input);
+    assert.equal(returnValue, input);
   });
 
   it('Executes the provided callback on each element of the input array', function() {
