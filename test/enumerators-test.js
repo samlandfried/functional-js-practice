@@ -71,7 +71,7 @@ describe('all', function() {
 
   it('Returns true if all elements in the array pass the test', function() {
     var allIntegers = enumerators.all(input, function(num) {
-      return typeof num === 'integer';
+      return typeof num === 'number';
     });
 
     assert.equal(allIntegers, true);
