@@ -10,7 +10,7 @@ describe('each', function() {
       eleCount[num] = eleCount[num] + 1 || 1;
     });
 
-    assert.deepEqual(returnValue, input);
+    assert.equal(returnValue, input);
   });
 
   it('Executes the provided callback on each element of the input array', function() {
@@ -34,11 +34,11 @@ describe('map', function() {
   });
 
   it('Returns a modified array', function() {
-    var returnValue = enumerators.map(input, function(num) {
+    var doubled = enumerators.map(input, function(num) {
       return num * 2;
     });
 
-    assert.deepEqual(returnValue, [2, 4, 6, 4]);
+    assert.deepEqual(doubled, [2, 4, 6, 4]);
   });
 });
 
@@ -52,17 +52,17 @@ describe('select', function() {
   });
 
   it('Returns a modified array', function() {
-    var returnValue = enumerators.select(input, function(num) {
+    var onlyTwos = enumerators.select(input, function(num) {
       return num === 2;
     });
 
-    assert.deepEqual(returnValue, [2, 2]);
+    assert.deepEqual(onlyTwos, [2, 2]);
   });
 });
 
 describe('all', function() {
   it('Does not modify the original array', function() {
-    var returnValue = enumerators.all(input, function(num) {
+    enumerators.all(input, function(num) {
       return num === 2;
     });
 
@@ -71,10 +71,10 @@ describe('all', function() {
 
   it('Returns true if all elements in the array pass the test', function() {
     var allIntegers = enumerators.all(input, function(num) {
-      return typeof num === 'integer';
+      return typeof num === 'number';
     });
 
-    assert.equal(allIntegers, true);
+    assert.isTrue(allIntegers);
   });
 
   it('Returns false if any element fails the provided test', function() {
@@ -82,13 +82,13 @@ describe('all', function() {
       return num % 2 === 0;
     });
 
-    assert.equal(allEven, false);
+    assert.isFalse(allEven);
   });
 });
 
 describe('some', function() {
   it('Does not modify the original array', function() {
-    var returnValue = enumerators.some(input, function(num) {
+    enumerators.some(input, function(num) {
       return num === 2;
     });
 
@@ -96,11 +96,11 @@ describe('some', function() {
   });
 
   it('Returns true if any elements in the array pass the test', function() {
-    var fourPresent = enumerators.some(input, function(num) {
-      return num === 4;
+    var threeInArray = enumerators.some(input, function(num) {
+      return num === 3;
     });
 
-    assert.equal(fourPresent, true)
+    assert.isTrue(threeInArray);
   });
 
   it('Returns false if all elements fail the provided test', function() {
@@ -108,7 +108,7 @@ describe('some', function() {
       return num > 5;
     });
 
-    assert.equal(greaterThanFivePresent, false);
+    assert.isFalse(greaterThanFivePresent);
   });
 });
 
@@ -121,7 +121,7 @@ describe('reduce', function() {
     assert.deepEqual(input, [1, 2, 3, 2])
   });
 
-  it('Returns whatever you tell it', function() {
+  it('Returns a value derived from the input array', function() {
     var sum = enumerators.reduce(input, function(memo, num) {
       return memo + num;
     });
@@ -129,7 +129,7 @@ describe('reduce', function() {
     assert.equal(sum, 8);
 
     var convertedToString = enumerators.reduce(input, function(memo, num) {
-      return String(memo) + String(num);
+      return memo + String(num);
     });
 
     assert.equal(convertedToString, '1232');
@@ -141,7 +141,7 @@ describe('reduce', function() {
       return memo;
     }, []); // <- Optional 3rd argument here (An empty array)
 
-    assert.equal(numWasEven, [false, true, false, true])
+    assert.deepEqual(numWasEven, [false, true, false, true])
   });
 });
 
