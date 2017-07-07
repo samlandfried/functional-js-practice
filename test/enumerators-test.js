@@ -1,26 +1,27 @@
 var assert = require('chai').assert;
 var enumerators = require('../enumerators');
-var input = [1, 2, 3, 2]
+var input = [1, 2, 3, 2];
 
 describe('each', function() {
   it('Returns the original array', function() {
-    var eleCount = {};
+    var decimal = 1;
 
     var returnValue = enumerators.each(input, function(num) {
-      eleCount[num] = eleCount[num] + 1 || 1;
+      decimal = decimal / num;
     });
 
     assert.equal(returnValue, input);
   });
 
   it('Executes the provided callback on each element of the input array', function() {
-    var eleCount = {};
+    var decimal = 1;
 
-    enumerators.each(input, function(num) {
-      eleCount[num] = eleCount[num] + 1 || 1;
+    var returnValue = enumerators.each(input, function(num) {
+      decimal = decimal / num;
     });
 
-    assert.deepEqual(eleCount, { 1: 1, 2: 2, 3: 1 })
+    assert.isBelow(decimal, 1);
+    assert.isAbove(decimal, 0);
   });
 });
 
@@ -144,8 +145,3 @@ describe('reduce', function() {
     assert.deepEqual(numWasEven, [false, true, false, true])
   });
 });
-
-// Bonus points:
-// Find other Ruby enumerables to rewrite in JS (Consider `none`, `filter`, `reverse` or `first`);
-// Modify these enumerables so the callback can take an additional, optional paramater that gives access to the index position of the current element
-// Add these methods to the Array.prototype so you can call them on any array
