@@ -145,8 +145,3 @@ describe('reduce', function() {
     assert.deepEqual(numWasEven, [false, true, false, true])
   });
 });
-
-// Bonus points:
-// Find other Ruby enumerables to rewrite in JS (Consider `none`, `filter`, `reverse` or `first`);
-// Modify these enumerables so the callback can take an additional, optional paramater that gives access to the index position of the current element
-// Add these methods to the Array.prototype so you can call them on any array
